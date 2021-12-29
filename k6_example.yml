@@ -1,7 +1,18 @@
-services:
-- module: shellexec
-  prepare:  
-  startup:
-  - ./k6 run k6_example.js
-  shutdown:
-  post-process:
+execution:
+- executor: k6
+  concurrency: 1
+  hold-for: 5s
+  scenario: simple
+
+scenarios:
+  simple: 
+    script: k6_example.js
+
+modules:
+  k6:
+    cmdline: ./k6 run k6_example.js
+
+# reporting:
+# - module: passfail
+# criteria:
+# - avg-rt>5s, stop as failed
