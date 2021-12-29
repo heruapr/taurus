@@ -5,5 +5,6 @@ import faker from "k6/x/faker"
 export default function () {
   http.get('https://blazedemo.com/');
   sleep(1);
-  console.log('TEST FAKER XK6 random name: '+faker.name())
+  let name = faker.name();
+  console.log (name);
 }
